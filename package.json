@@ -1,0 +1,10 @@
+{
+    "dependencies": {
+        "@types/google-apps-script": "^1.0.86"
+    },
+    "name": "inversiones",
+    "version": "1.0.0",
+    "devDependencies": {},
+    "author": "Fabian Guidobaldi",
+    "license": "ISC"
+}
