@@ -12,7 +12,7 @@ export class StockRepo {
       page_size: 1000,
     };
 
-    let response = RestClient.POST(url, JSON.stringify(body)) as BYMAEquityResponse;
+    let response = RestClient.POST(url, JSON.stringify(body)) as BYMAStockResponse;
     return aclEquityResponse(response);
   }
 
@@ -26,12 +26,12 @@ export class StockRepo {
       page_size: 1000,
     };
 
-    let response = RestClient.POST(url, JSON.stringify(body)) as BYMAEquityResponse;
+    let response = RestClient.POST(url, JSON.stringify(body)) as BYMAStockResponse;
     return aclEquityResponse(response);
   }
 }
 
-function aclEquityResponse(response: BYMAEquityResponse): FinancialAsset[] {
+function aclEquityResponse(response: BYMAStockResponse): FinancialAsset[] {
   let assets: FinancialAsset[] = [];
 
   for (let element of response.data) {
@@ -41,7 +41,7 @@ function aclEquityResponse(response: BYMAEquityResponse): FinancialAsset[] {
   return assets;
 }
 
-function buildAsset(data: BYMAEquityData): FinancialAsset {
+function buildAsset(data: BYMAStockDetail): FinancialAsset {
   return {
     ticker: data.symbol,
     type: 'stock',
@@ -61,9 +61,9 @@ interface BYMARequest {
   page_size: number;
 }
 
-interface BYMAEquityResponse {
+interface BYMAStockResponse {
   content: Content;
-  data: BYMAEquityData[];
+  data: BYMAStockDetail[];
 }
 
 interface Content {
@@ -73,7 +73,7 @@ interface Content {
   total_elements_count: number;
 }
 
-interface BYMAEquityData {
+interface BYMAStockDetail {
   tradeVolume: number;
   symbol: string;
   imbalance: number;
