@@ -12,7 +12,7 @@ export class RestClient {
     }
   }
 
-  static POST(url: string, body: any): any {
+  static POST(url: string, body: string): any {
     let options = {
       method: <const>'post',
       payload: body,
