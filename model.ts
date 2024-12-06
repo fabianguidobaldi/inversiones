@@ -1,4 +1,4 @@
-export interface Cotizacion {
-  fecha: Date;
-  valor: number;
+export interface ForeignExchange {
+  date: Date;
+  rate: number;
 }

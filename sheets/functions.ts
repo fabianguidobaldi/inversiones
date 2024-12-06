@@ -1,22 +1,22 @@
-import {DolarMEPRepo} from '../repositories/dolar_mep';
+import {MEPDollarRepo} from '../repositories/mep_dollar';
 
 /**
- * Devuelve la cotización actual del dólar MEP.
- * @return Cotización MEP actual en $.
+ * Returns current FX MEP rate.
+ * @return Current FX MEP rate expressed in ARS.
  * @customfunction
  */
-function COTIZACIONACTUALMEP(): number {
-  return new DolarMEPRepo().CotizacionActual().valor;
+function CURRENT_MEP_FX(): number {
+  return new MEPDollarRepo().CurrentFX().rate;
 }
 
 /**
- * Devuelve la cotización histórica del dólar MEP en un período.
- * @param {Date} desde Fecha inicial del período.
- * @param {Date} hasta Fecha final del período.
- * @return Un array bidimensional que contiene el listado de [fecha, cotizacion] del período
+ * Returns FX MEP rate for a period of time.
+ * @param {Date} since First day of the period.
+ * @param {Date} to Last day of the period.
+ * @return A bidimensional array containing the list of [date, rate] FX MEP for the period.
  * @customfunction
  */
-function COTIZACIONHISTORICAMEP(desde: Date, hasta: Date): Array<[Date, number]> {
-  let cotizaciones = new DolarMEPRepo().CotizacionHistorica(desde, hasta);
-  return cotizaciones.map(cotizacion => [cotizacion.fecha, cotizacion.valor]);
+function HISTORIC_MEP_FX(since: Date, to: Date): Array<[Date, number]> {
+  let fxs = new MEPDollarRepo().HistoricFX(since, to);
+  return fxs.map(fx => [fx.date, fx.rate]);
 }
